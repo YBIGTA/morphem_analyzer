@@ -2,6 +2,7 @@ import pymysql
 import logging
 from .util import CommentDbConnector
 
+
 class CommentLoader:
     _get_comment_count_query = "select count(*) from tb_comment " \
                                + " where webtoon_id = %s " \
@@ -10,8 +11,8 @@ class CommentLoader:
                          + " where webtoon_id = %s " \
                          + " and episode_id = %s "
 
-    def __init__(self, jdbc_url, user_name, password, database):
-        self.comment_db_connector = CommentDbConnector(jdbc_url, user_name, password, database)
+    def __init__(self, host, port, password, database, user_name):
+        self.comment_db_connector = CommentDbConnector(host, port, user_name, password, database)
 
 
     def load_comments(self, webtoon_id, episode_id):

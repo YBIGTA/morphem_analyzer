@@ -29,15 +29,20 @@ class CommentLoader:
         cur.execute(self._get_comment_query % (webtoon_id, episode_id))
         return cur.fetchall()
 
-
     def get_comments_size(self, webtoon_id, episode_id):
         cur = self.get_cursor()
-        cur.execute(self._get_comment_count_query % ( webtoon_id, episode_id))
+        cur.execute(self._get_comment_count_query % (webtoon_id, episode_id))
         webtoon_comment_count = cur.fetchone()
         return webtoon_comment_count
 
     def _get_cursor(self):
-        con = pymysql.connect(host=self.jdbc_url, user=self.user_name, password=self.password, database=self.database)
+        con = pymysql.connect(host=self.jdbc_url,
+                              user=self.user_name,
+                              password=self.password,
+                              database=self.database,
+                              use_unicode=True,
+                              charset='utf8')
+
         con.autocommit_mode = True
         cur = con.cursor()
         return cur

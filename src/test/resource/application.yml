@@ -3,3 +3,5 @@ port: 3308
 user_name: ybigta
 password: ybigta
 database: webtoon
+webtoon_id: 20853
+episode_id: 1059

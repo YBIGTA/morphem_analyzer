@@ -4,6 +4,7 @@ import yaml
 import unittest
 import logging
 
+
 class TestDbConnection(unittest.TestCase):
     def setUp(self):
         logging.basicConfig(level=logging.INFO)

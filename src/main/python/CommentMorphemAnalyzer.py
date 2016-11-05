@@ -4,7 +4,7 @@ from .util import CommentDbConnector
 class CommentMorphemAnalyzer:
 
     def __init__(self, jdbc_url, user_name, password, database):
-        self.comment_db_connector = CommentDbConnector.CommentDbConnector(jdbc_url, user_name, password, database)
+        self.comment_db_connector = CommentDbConnector(jdbc_url, user_name, password, database)
 
     def initialize(self):
 

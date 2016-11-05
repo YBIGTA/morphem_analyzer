@@ -11,7 +11,7 @@ class CommentLoader:
                          + " and episode_id = %s "
 
     def __init__(self, jdbc_url, user_name, password, database):
-        self.comment_db_connector = CommentDbConnector.CommentDbConnector(jdbc_url, user_name, password, database)
+        self.comment_db_connector = CommentDbConnector(jdbc_url, user_name, password, database)
 
 
     def load_comments(self, webtoon_id, episode_id):

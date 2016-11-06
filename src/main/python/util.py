@@ -1,5 +1,12 @@
 import pymysql
 
+"""
+host = "175.158.15.40"
+user_name = "ybigta"
+password =  "ybigta"
+database= "webtoon"
+port=3308
+"""
 
 class CommentDbConnector:
 

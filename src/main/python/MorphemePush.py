@@ -13,12 +13,16 @@ class MorphemePush:
     def Push_morphemes(self, analyzed_comments):
         cur = self.comment_db_connector.get_cursor()
 
+        count = 0
         for comment in analyzed_comments:
             logging.info("webtoon_id : {webtoon_id}, episode_id : {episode_id}".format(
                 webtoon_id=comment[0][0], episode_id=comment[0][1]))
             for morpheme in comment:
                 try:
                     cur.execute(self._push_morpheme_query %(morpheme[0], morpheme[1], morpheme[2], morpheme[3], morpheme[4], morpheme[5]))
-                except:
-                    print("push error: ", morpheme)
-        self.comment_db_connector.commit() # 왜 안됨?
+                    count += 1
+                except cur.Error as err:
+                    print("input error: {}".format(err))
+                    return 0
+        cur.commit()
+        return count

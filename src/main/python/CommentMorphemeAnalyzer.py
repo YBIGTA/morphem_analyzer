@@ -1,15 +1,14 @@
-from .util import CommentDbConnector
 from konlpy.tag import Mecab
 import os
 import subprocess
 
-class CommentMorphemAnalyzer:
+class CommentMorphemeAnalyzer:
 
     def __init__(self):
         self.mecab = Mecab()
 
 
-    def initialize(self):
+    # def initialize(self):
 
 
     def load_dictionary(self, webtoon_id):
@@ -39,7 +38,7 @@ class CommentMorphemAnalyzer:
         return result
 
     def analyze_comments(self, comments):
-        analyzed_comments = [self.analze(comment) for comment in comments]
+        analyzed_comments = [self.analyze(comment) for comment in comments]
         return analyzed_comments
     """
         return form

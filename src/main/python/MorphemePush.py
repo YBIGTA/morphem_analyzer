@@ -11,18 +11,21 @@ class MorphemePush:
         self.comment_db_connector = CommentDbConnector(host, port, user_name, password, database)
 
     def Push_morphemes(self, analyzed_comments):
-        cur = self.comment_db_connector.get_cursor()
+        con = self.comment_db_connector.get_con()
+        cur = con.cursor()
 
         count = 0
+
         for comment in analyzed_comments:
             logging.info("webtoon_id : {webtoon_id}, episode_id : {episode_id}".format(
                 webtoon_id=comment[0][0], episode_id=comment[0][1]))
             for morpheme in comment:
                 try:
+                    print(count)
                     cur.execute(self._push_morpheme_query %(morpheme[0], morpheme[1], morpheme[2], morpheme[3], morpheme[4], morpheme[5]))
                     count += 1
+                    con.commit()
                 except cur.Error as err:
                     print("input error: {}".format(err))
-                    return 0
-        cur.commit()
+
         return count

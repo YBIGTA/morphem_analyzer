@@ -6,10 +6,10 @@ class CommentMorphemeAnalyzer:
 
     def __init__(self):
         self.load_dictionary()
-        self.mecab = Mecab("../../../mecab-ko-dic-2.0.1-20150920")
+        self.mecab = Mecab(os.path.dirname(os.path.abspath(__file__))+"/../../../mecab-ko-dic-2.0.1-20150920")
 
     def load_dictionary(self):
-        os.system("bash ../../../compile-dictionary.sh")
+        os.system("bash " + os.path.dirname(os.path.abspath(__file__)) + "/../../../compile-dictionary.sh")
 
     # def load_common_dictionary(self):
     #     pass

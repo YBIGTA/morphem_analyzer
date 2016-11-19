@@ -2,10 +2,10 @@ from src.main.python.CommentLoader import CommentLoader
 from src.main.python.CommentMorphemeAnalyzer import CommentMorphemeAnalyzer
 from src.main.python.MorphemePush import MorphemePush
 import yaml
-
+import os
 
 def load_configuration():
-    configuration_path = "../resource/application.yml"
+    configuration_path = os.path.dirname(os.path.abspath(__file__)) + "/../resource/application.yml"
 
     def _load_configuration(file):
         return yaml.load(file)
@@ -14,7 +14,7 @@ def load_configuration():
         return _load_configuration(fi)
 
 
-if __name__ == "__main__":
+def run():
     conf = load_configuration()
 
     print("load pring loader")
@@ -43,6 +43,9 @@ if __name__ == "__main__":
     num_push = mp.Push_morphemes(morpheme_analyzed)
 
     print("success! Morpheme number = ", num_push)
+
+if __name__ == "__main__":
+    run()
 
 """
 host: 175.158.15.40

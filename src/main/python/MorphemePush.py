@@ -19,8 +19,6 @@ class MorphemePush:
         count = 0
 
         for comment in analyzed_comments:
-            logging.info("webtoon_id : {webtoon_id}, episode_id : {episode_id}".format(
-                webtoon_id=comment[0][0], episode_id=comment[0][1]))
 
             values = [self._push_morpheme_query_values_format % (
                 morpheme[0], morpheme[1], morpheme[2], morpheme[3], morpheme[4], morpheme[5]) for morpheme in
@@ -29,12 +27,12 @@ class MorphemePush:
             query = self._push_morpheme_query_format + ",".join(values)
 
             try:
-                print(count)
+                if count % 1000 is 0: logging.info("%d done" % count)
                 cur.execute(query)
                 count += len(comment)
                 con.commit()
             except cur.Error as err:
-                print("input error query: {}".format(query))
-                print("{}", err)
+                logging.error("input error query: {}".format(query))
+                logging.error("{}".format(err))
 
         return count

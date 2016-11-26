@@ -3,6 +3,8 @@ from src.main.python.CommentMorphemeAnalyzer import CommentMorphemeAnalyzer
 from src.main.python.MorphemePush import MorphemePush
 import yaml
 import os
+import logging
+
 
 def load_configuration():
     configuration_path = os.path.dirname(os.path.abspath(__file__)) + "/../resource/application.yml"
@@ -15,6 +17,7 @@ def load_configuration():
 
 
 def run():
+    logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', filename='morpheme.log', level=logging.INFO)
     conf = load_configuration()
 
     print("load pring loader")
@@ -43,6 +46,7 @@ def run():
     num_push = mp.push_morphemes(morpheme_analyzed)
 
     print("success! Morpheme number = ", num_push)
+
 
 if __name__ == "__main__":
     run()

@@ -40,7 +40,7 @@ def run():
                       user_name=conf['user_name'],
                       password=conf['password'],
                       database=conf['database'])
-    num_push = mp.Push_morphemes(morpheme_analyzed)
+    num_push = mp.push_morphemes(morpheme_analyzed)
 
     print("success! Morpheme number = ", num_push)
 

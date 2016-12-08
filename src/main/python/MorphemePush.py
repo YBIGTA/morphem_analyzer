@@ -3,14 +3,17 @@ from .util import CommentDbConnector
 
 
 class MorphemePush:
-    _push_morpheme_query_format = "insert into comment_morpheme_analyzed " \
-                                  + "  (title_id, episode_no, comment_no, morpheme, morpheme_tag, morpheme_location)" \
-                                  + "  values "
+    _push_morpheme_query_format = "insert into comment_morpheme_analyzed" \
+                                  + " (title_id, episode_no, comment_no, morpheme, morpheme_tag, morpheme_location)" \
+                                  + " values "
 
     _push_morpheme_query_values_format = "(%d, %d, %d, '%s', '%s', %d)"
 
     def __init__(self, host, port, password, database, user_name):
-        self.comment_db_connector = CommentDbConnector(host, port, user_name, password, database)
+        try:
+            self.comment_db_connector = CommentDbConnector(host, port, user_name, password, database)
+        except:
+            print("connect failed")
 
     def push_morphemes(self, analyzed_comments):
         con = self.comment_db_connector.get_con()

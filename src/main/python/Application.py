@@ -32,11 +32,12 @@ def run():
 
     print("load comment done")
     comments_loaded = cl.load_comments(webtoon_id, episode_id)
-    print("load morpheme analyzer")
+    print("load morpheme analyzer", cl.get_comments_size(webtoon_id, episode_id))
     cma = CommentMorphemeAnalyzer()
     print("load done morpheme analyzer")
 
     morpheme_analyzed = cma.analyze_comments(comments_loaded)
+    print("analysis done")
 
     mp = MorphemePush(host=conf['host'],
                       port=conf['port'],

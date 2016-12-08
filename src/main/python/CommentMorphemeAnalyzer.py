@@ -30,7 +30,11 @@ class CommentMorphemeAnalyzer:
 
 
     def analyze_comments(self, comments):
-        analyzed_comments = [self.analyze(comment) for comment in comments]
+        analyzed_comments = []
+        for i, comment in enumerate(comments):
+            if i % 1000 == 0: print(i, " completed")
+            analyzed_comments.append(self.analyze(comment))
+        # analyzed_comments = [self.analyze(comment) for comment in comments]
         return analyzed_comments
 
 

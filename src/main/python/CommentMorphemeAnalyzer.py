@@ -5,7 +5,8 @@ import os
 class CommentMorphemeAnalyzer:
 
     def __init__(self):
-        self.load_dictionary()
+        if input("update dictionary? [y/n]") == 'y':
+            self.load_dictionary()
         self.mecab = Mecab(os.path.dirname(os.path.abspath(__file__))+"/../../../mecab-ko-dic-2.0.1-20150920")
 
     def load_dictionary(self):

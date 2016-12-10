@@ -28,11 +28,14 @@ def run():
                        database=conf['database'])
 
     webtoon_id = int(input("webtoon_id :"))
-    episode_id = int(input("episode_id :"))
+    episode_id = input("episode_id (delimeter=','):")
+    episode_id_li = episode_id.split(', ')
+    print(episode_id_li)
 
     print("load comment done")
-    comments_loaded = cl.load_comments(webtoon_id, episode_id)
-    print("load morpheme analyzer", cl.get_comments_size(webtoon_id, episode_id))
+    comments_loaded = cl.load_comments(webtoon_id, episode_id_li)
+
+    # print("load morpheme analyzer", cl.get_comments_size(webtoon_id, episode_id))
     cma = CommentMorphemeAnalyzer()
     print("load done morpheme analyzer")
 

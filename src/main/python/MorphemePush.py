@@ -30,12 +30,15 @@ class MorphemePush:
             query = self._push_morpheme_query_format + ",".join(values)
 
             try:
-                if count % 1000 is 0: logging.info("%d done" % count)
+                if count % 1000 is 0:
+                    logging.info("%d done" % count)
+                    print("%d pushed" % count)
                 cur.execute(query)
                 count += len(comment)
                 con.commit()
             except cur.Error as err:
-                logging.error("input error query: {}".format(query))
+                # logging.error("input error query: {}".format(query))
                 logging.error("{}".format(err))
+                logging.error(values)
 
         return count

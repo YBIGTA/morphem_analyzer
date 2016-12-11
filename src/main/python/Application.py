@@ -4,6 +4,7 @@ from src.main.python.MorphemePush import MorphemePush
 import yaml
 import os
 import logging
+import re
 
 
 def load_configuration():
@@ -29,7 +30,7 @@ def run():
 
     webtoon_id = int(input("webtoon_id :"))
     episode_id = input("episode_id (delimeter=','):")
-    episode_id_li = episode_id.split(', ')
+    episode_id_li = re.compile('[, ]+').split(episode_id)
     print(episode_id_li)
 
     print("load comment done")
